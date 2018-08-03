@@ -63,10 +63,10 @@ function retrieveTime(name){
 
 //Motor Script
 //wd.motorB = 0;
-/*setInterval(() => {
+setInterval(() => {
   wd_direction *= -1
   wd.motorB = wd_direction;
-},1000);*/
+},1000);
 
 
 
