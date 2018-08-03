@@ -1,0 +1,37 @@
+const Stopwatch = require("node-stopwatch").Stopwatch;
+
+
+
+var ScratchBit = module.exports = function(name) {
+  this.name = name;
+  this.time = Stopwatch.create();
+}
+ScratchBit.prototype.getTime(){
+  return parseTime(time);
+}
+ScratchBit.prototype.parseTime(time){
+  console.log("ticks:" + time.elapsedTicks);
+  console.log("" + time.elapsed.hours + time.elapsed.minutes + time.elapsed.seconds)
+}
+
+
+
+
+
+/*
+class ScratchBit {
+  constructor(name, time){
+  this.name = name;
+  time = time;
+  }
+  getTime(){
+    return parseTime(time);
+  }
+  parseTime(time){
+    console.log("ticks:" + time.elapsedTicks);
+    console.log("" + time.elapsed.hours + time.elapsed.minutes + time.elapsed.seconds)
+  }
+
+}
+module.exports.ScratchBit = ScratchBit
+*/

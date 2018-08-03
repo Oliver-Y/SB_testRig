@@ -1,0 +1,8 @@
+var node_timers = require('node-timers');
+var MyTimer = node_timers.simple();
+MyTimer.start();
+setTimeout(endTimer,4000);
+function endTimer(){
+    console.log(MyTimer.time());
+    MyTimer.stop;
+}

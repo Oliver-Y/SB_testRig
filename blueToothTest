@@ -1,0 +1,35 @@
+var noble = require('noble');
+
+const SERVICE_UUID = '4cdbbd87d6e646c29d0bdf87551e159a';
+const LED_CHAR = '4cdb8702d6e646c29d0bdf87551e159a';
+
+var delay = 200;
+
+noble.on('stateChange', function(state) {
+  console.log(state);
+  if (state === 'poweredOn') {
+    noble.startScanning([SERVICE_UUID], false);
+  } else {
+    noble.stopScanning();
+  }
+});
+
+noble.on('warning', function(msg) {
+  console.log(msg);
+});
+
+noble.on('discover', function(peripheral) {
+  noble.stopScanning();
+  peripheral.connect(function(error) {
+    console.log("Connected to " + peripheral.advertisement.localName);
+    peripheral.once('disconnect', function() {
+      console.log('device disconnected');
+      noble.startScanning([SERVICE_UUID], false);
+    });
+    peripheral.discoverSomeServicesAndCharacteristics([SERVICE_UUID], [LED_CHAR], function(error, services, chars) {
+      var ledChar = chars[0];
+        console.log(ledChar);
+      }, delay);
+    });
+  });
+});
